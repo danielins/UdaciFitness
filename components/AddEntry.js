@@ -10,6 +10,7 @@ import { submitEntry, removeEntry } from '../utils/API'
 import { connect } from 'react-redux'
 import { addEntry } from '../actions'
 import { white, purple } from '../utils/colors'
+import { NavigationActions } from 'react-navigation'
 
 
 function SubmitBtn({ onPress }){
@@ -83,6 +84,7 @@ class AddEntry extends Component {
     }))
 
   	// Navigate to Home
+    this.toHome();
 
   	// Save to DB
   	submitEntry({key, entry})
@@ -99,10 +101,17 @@ class AddEntry extends Component {
     }))
 
   	// Navigate to Home
+    this.toHome();
 
   	// Save to DB
   	removeEntry(key)
 
+  }
+
+  toHome = () => {
+    this.props.navigation.dispatch(NavigationActions.back({
+      key: 'AddEntry'
+    }))
   }
 
   render() {
